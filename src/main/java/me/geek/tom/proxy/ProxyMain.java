@@ -1,5 +1,6 @@
 package me.geek.tom.proxy;
 
+import kotlin.io.ByteStreamsKt;
 import me.geek.tom.proxy.config.Configuration;
 import me.geek.tom.proxy.server.ProxyServer;
 import org.apache.logging.log4j.Level;
@@ -27,7 +28,7 @@ public class ProxyMain {
                 InputStream in = this.getClass().getClassLoader().getResourceAsStream("config.yml");
 
                 assert in != null;
-                out.write(in.readAllBytes());
+                ByteStreamsKt.copyTo(in, out, 1);
             } catch (IOException e) {
                 LOGGER.fatal("FAILED TO CREATE DEFAULT CONFIG!", e);
                 return;
