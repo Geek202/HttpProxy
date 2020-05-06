@@ -1,0 +1,11 @@
+# Hostname to backend mappings
+sites:
+  # At -> the host that the request is recieved on
+  # Go -> the address to forward the request to
+  - at: 'test1.example.com'
+    go: 'localhost:8080'
+  - at: 'test2.example.ml'
+    go: 'localhost:3080'
+
+# The port that the server listens on.
+port: 5080

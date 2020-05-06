@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Proxy error!</title>
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <style>
+body {
+    background-image: url("http://dev.tomthegeek.tk/hmm.gif");
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 20;
+    background-color: transparent;
+}
+        </style>
+    </head>
+
+    <body>
+        <div class="w3-container" id="main">
+            <!-- ALERT -->
+            <div id="id01" class="w3-modal">
+                <div class="w3-modal-content w3-animate-opacity w3-card-4">
+                    <header class="w3-container w3-red">
+                        <!--<span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>-->
+                        <h2>Error processing your request!</h2>
+                    </header>
+                    <div class="w3-container">
+                        <p>The proxy failed to locate the correct site, so you ended up here.</p>
+                        <p>Usually, this is due to a configuration error, and if you are not the site owner there is not much you can do.</p>
+                        <p>The best thing to do would be to try again later. Sorry for this.</p>
+                    </div>
+                    <footer class="w3-container w3-red">
+                        <p>@server@ version @version@ running on ${server_os}</p>
+                    </footer>
+                </div>
+            </div>
+        </div>
+        <script>
+            document.getElementById('id01').style.display='block';
+        </script>
+    <div class="overlay"></div>
+    </body>
+</html>

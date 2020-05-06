@@ -1,0 +1,53 @@
+plugins {
+    id 'java'
+    id 'com.github.johnrengelman.shadow' version '5.2.0'
+}
+
+repositories {
+    mavenCentral()
+}
+
+group = "me.geek.tom"
+//archivesBaseName = "HttpProxy"
+version = "1.0-SNAPSHOT"
+
+import org.apache.tools.ant.filters.ReplaceTokens
+
+dependencies {
+    // Config
+    implementation 'org.yaml:snakeyaml:1.26'
+    
+    // Logging
+    implementation 'org.apache.logging.log4j:log4j-slf4j-impl:2.13.1'
+    implementation 'org.apache.logging.log4j:log4j-iostreams:2.13.1'
+
+    // Client
+    implementation 'com.squareup.okhttp3:okhttp:4.6.0'
+
+    // Server
+    implementation 'org.eclipse.jetty:jetty-server:9.1.4.v20140401'
+    implementation 'org.eclipse.jetty.orbit:javax.servlet:3.0.0.v201112011016'
+}
+
+processResources {
+    filter(ReplaceTokens, tokens:[
+            'version': version,
+            'server': project.name
+    ])
+}
+
+jar {
+    manifest {
+        attributes([
+                "Specification-Title": "HttpProxy",
+                "Specification-Vendor": "Tom_The_Geek",
+                "Specification-Version": "1",
+                "Implementation-Title": project.name,
+                "Implementation-Version": "${project.version}",
+                "Implementation-Vendor" :"Tom_The_Geek",
+                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+        ])
+    }
+}
+
+assemble.dependsOn shadowJar
